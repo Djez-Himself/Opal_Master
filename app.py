@@ -12,10 +12,6 @@ client = HTTP("https://api.bybit.com",
 
 def order(side,quantity, symbol,order_type="Market"):
     try:
-        print(client.position_mode_switch(
-            symbol=symbol,
-            mode="MergedSingle"))
-        
         print(f"sending order {order_type} - {side} {quantity} {symbol}")
         order = client.place_active_order(
             symbol=symbol,
