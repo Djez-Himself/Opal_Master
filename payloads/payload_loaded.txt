@@ -1,0 +1,24 @@
+{
+    "passphrase": "ta passphrase ",
+    "time": "2020-09-06T01:44:17Z",
+    "exchange": "Bybit",
+    "ticker": "BTCUSDTPERP",
+    "bar": {
+        "time": "2022-05-024T01:43:00Z",
+        "open": 29418,
+        "high": 29426,
+        "low": 29407,
+        "close": 29411,
+        "volume": 235.586
+    },
+    "strategy": {
+        "order_action": "buy",
+        "order_contracts": 0.001,
+        "order_price": 29600,
+        "order_id": "Long: Opened",
+        "market_position": "long",
+        "market_position_size": 0.001,
+        "prev_market_position": "flat",
+        "prev_market_position_size": 0
+    }
+}
