@@ -45,7 +45,7 @@ def webhook():
         }
     
     if data['exchange'] == 'Binance':
-        symbol= data['ticker'][:-4] #    supprime = usdt
+        symbol= data['ticker'][:-4] #    supprime = PERP 
     else:
         symbol = data['ticker']
         
