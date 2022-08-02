@@ -44,7 +44,7 @@ def webhook():
             "message": "Nice try, invalid passphrase"
         }
     
-    if data['exchange'] == 'Binance':
+    if data['exchange'] == 'BINANCE':
         symbol= data['ticker'][:-4] #    supprime = PERP 
     else:
         symbol = data['ticker']
