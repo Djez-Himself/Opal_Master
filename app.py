@@ -43,10 +43,11 @@ def webhook():
             "code": "error",
             "message": "Nice try, invalid passphrase"
         }
-    
-    
-    
-    symbol= data['ticker'][:-4] #    supprime = PERP 
+      
+    if data['exchange'] == 'BINANCE':
+        symbol= data['ticker'][:-4] #    supprime = PERP 
+    else:
+        symbol = data['ticker'] 
     
     side = data['strategy']['order_action'].capitalize()
     quantity = data['strategy']['order_contracts'] 
