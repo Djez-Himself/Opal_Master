@@ -20,7 +20,8 @@ def order(side,quantity, symbol,order_type="Market"):
             qty=quantity,
             time_in_force="GoodTillCancel",
             reduce_only=False,
-            close_on_trigger=False)
+            close_on_trigger=False,
+            position_idx=0)
         
     except Exception as e:
         print("an exception occured - {}".format(e))
