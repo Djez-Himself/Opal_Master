@@ -7,8 +7,8 @@ from pybit.usdt_perpetual import HTTP
 
 app = Flask(__name__)
 
-client = HTTP("https://api.bybit.com",
-               api_key=bybitconfig.BYBIT_API_KEY, api_secret=bybitconfig.BYBIT_API_SECRET)
+client = HTTP("https://api-testnet.bybit.com",
+               api_key=bybitconfig.TESTNET_API_KEY, api_secret=bybitconfig.TESTNET_API_SECRET)
 
 def order(side,quantity, symbol,order_type="Market"):
     try:
@@ -20,8 +20,7 @@ def order(side,quantity, symbol,order_type="Market"):
             qty=quantity,
             time_in_force="GoodTillCancel",
             reduce_only=False,
-            close_on_trigger=False,
-            position_idx=0)
+            close_on_trigger=False)
         
     except Exception as e:
         print("an exception occured - {}".format(e))
@@ -44,15 +43,13 @@ def webhook():
             "message": "Nice try, invalid passphrase"
         }
     order_id = data['strategy']['order_id'] 
-    if data['exchange'] == 'BINANCE':
-        symbol= data['ticker'][:-4] #delete PERP on ticker form Binance TV chart (BTCUSDTPERP = BTCUSDT)
-    else:
-        symbol = data['ticker'] 
+    symbol= data['ticker'][:-2] #    supprime = .P
+
     
     side = data['strategy']['order_action'].capitalize()
     quantity = data['strategy']['order_contracts']
     
-    #Close position if SL signal or open trade
+    
     if order_id == "Short SL":
         print("Close Short Position : SL")
         order_response = client.close_position(symbol)
@@ -62,8 +59,9 @@ def webhook():
     else:
         print('Entry')
         order_response = order(side, quantity, symbol)
+            
     
-    #Get trade info
+    #print(symbol)
     if order_response:
         return {
             "code": "success",
