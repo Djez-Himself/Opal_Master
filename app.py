@@ -7,8 +7,8 @@ from pybit.usdt_perpetual import HTTP
 
 app = Flask(__name__)
 
-client = HTTP("https://api-testnet.bybit.com",
-               api_key=bybitconfig.TESTNET_API_KEY, api_secret=bybitconfig.TESTNET_API_SECRET)
+client = HTTP("https://api.bybit.com",
+               api_key=bybitconfig.BYBIT_API_KEY, api_secret=bybitconfig.BYBIT_API_SECRET)
 
 def order(side,quantity, symbol,order_type="Market"):
     try:
@@ -20,7 +20,8 @@ def order(side,quantity, symbol,order_type="Market"):
             qty=quantity,
             time_in_force="GoodTillCancel",
             reduce_only=False,
-            close_on_trigger=False)
+            close_on_trigger=False,
+            position_idx=0)
         
     except Exception as e:
         print("an exception occured - {}".format(e))
